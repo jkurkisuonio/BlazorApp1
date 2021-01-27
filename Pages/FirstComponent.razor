@@ -1,0 +1,32 @@
+﻿@page "/FirstComponent"
+<h3>FirstComponent</h3>
+
+<p>Current teksti: @teksti</p>
+
+<input type="text"  @onkeyup="KeyboardEventHandler " />
+
+
+@code {
+
+    private string teksti;
+    string KeyPressed = "";
+    string EventInfo = "";
+    private void KeyboardEventHandler(KeyboardEventArgs args)
+    {
+        KeyPressed = "Key Pressed is " + args.Key;
+        EventInfo = "Event Type " + args.Type;
+
+        teksti += args.Key;
+
+
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            teksti = String.Empty;
+        }
+    }
+
+}
